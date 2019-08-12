@@ -8,6 +8,7 @@ import java.util.List;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DB;
 import com.mongodb.DBCollection;
+import com.mongodb.DBCursor;
 import com.mongodb.DBObject;
 import com.mongodb.MongoClient;
 
@@ -15,19 +16,23 @@ import br.com.darlan.javamongo.domain.Cliente;
 import br.com.darlan.javamongo.domain.Telefone;
 
 public class DBUtil {
+	private static DBCollection colecao;
 	
-	public static final DBCollection conectar(String dataBase, String collection) {
-		MongoClient client;
+	public static final void conectar(String dataBase, String collection) {
 		try { 
-			client = new MongoClient();
+			MongoClient client = new MongoClient();
 			DB dB = client.getDB(dataBase);
-			DBCollection colecao = dB.getCollection(collection);
-			
-			return colecao;
+			colecao = dB.getCollection(collection);
 		} catch (UnknownHostException e) {
 			e.printStackTrace();
 		}
-		return null;
+	}
+	
+	public static final void delete(String key, String value) {
+		DBObject query = new BasicDBObject(key, value);
+		DBCursor cursor = colecao.find(query);			
+		DBObject obj = cursor.one();
+		colecao.remove(obj);
 	}
 	
 	public static final DBObject toDBObj(Cliente cliente) {

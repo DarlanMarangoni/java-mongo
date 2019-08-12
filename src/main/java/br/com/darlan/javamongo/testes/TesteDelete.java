@@ -15,13 +15,9 @@ public class TesteDelete {
 	
 	public static void main(String[] args) {
 		
-		DBCollection colecao = DBUtil.conectar("DBCliente", "clientes01");
+		DBUtil.conectar("DBCliente", "clientes01");
 		
-		DBObject query = new BasicDBObject("_id", "4");
-		DBCursor cursor = colecao.find(query);			
-		DBObject obj = cursor.one();
-		
-		colecao.remove(obj);
+		DBUtil.delete("_id", "3");
 	}
 
 }
