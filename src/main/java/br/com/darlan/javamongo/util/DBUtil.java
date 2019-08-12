@@ -2,7 +2,6 @@ package br.com.darlan.javamongo.util;
 
 import java.net.UnknownHostException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import com.mongodb.BasicDBObject;
@@ -28,14 +27,19 @@ public class DBUtil {
 		}
 	}
 	
-	public static final void delete(String key, String value) {
+	public static void delete(String key, String value) {
 		DBObject query = new BasicDBObject(key, value);
 		DBCursor cursor = colecao.find(query);			
 		DBObject obj = cursor.one();
 		colecao.remove(obj);
 	}
 	
-	public static final DBObject toDBObj(Cliente cliente) {
+	public static void insere(Cliente cliente) {
+		DBObject obj = toDBObj(cliente);
+		colecao.insert(obj);
+	}
+	
+	public static DBObject toDBObj(Cliente cliente) {
 		List<String> telefones = new ArrayList<String>();
 		for (Telefone telefone : cliente.getTelefones()) {
 			telefones.add(telefone.getNumero());

@@ -1,22 +1,14 @@
 package br.com.darlan.javamongo.testes;
 
-import java.net.UnknownHostException;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
-
-import com.mongodb.DB;
-import com.mongodb.DBCollection;
-import com.mongodb.DBObject;
-import com.mongodb.MongoClient;
 
 import br.com.darlan.javamongo.domain.Cliente;
 import br.com.darlan.javamongo.domain.Endereco;
 import br.com.darlan.javamongo.domain.Telefone;
 import br.com.darlan.javamongo.util.DBUtil;
 
-public class TesteCliente {
+public class TesteInsere {
 
 	public static void main(String[] args) {
 		
@@ -27,20 +19,11 @@ public class TesteCliente {
 		lista.add(telefone1);
 		lista.add(telefone2);
 		
-		Cliente cliente = new Cliente("5", "Vanessa", 30, endereco, lista);
+		Cliente cliente = new Cliente("3", "Vanessa", 30, endereco, lista);
 		
-		DBObject data = DBUtil.toDBObj(cliente);
-		
-		try {
-			MongoClient client = new MongoClient();
-			DB dataBase = client.getDB("DBCliente");
-			DBCollection colecao = dataBase.getCollection("clientes01");
-			
-			colecao.insert(data);
-			
-		} catch (UnknownHostException e) {
-			e.printStackTrace();
-		}
+		DBUtil.conectar("DBCliente", "clientes01");
+		 
+		DBUtil.insere(cliente);
 		
 		System.out.println(cliente);
 	}
