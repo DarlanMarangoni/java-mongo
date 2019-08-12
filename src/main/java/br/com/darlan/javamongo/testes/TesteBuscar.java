@@ -4,15 +4,14 @@ import com.mongodb.DBObject;
 
 import br.com.darlan.javamongo.dao.DAO;
 
-public class TesteDelete {
-	
+public class TesteBuscar {
+
 	public static void main(String[] args) {
 		
 		DAO.conectar("DBCliente", "clientes01");
 		
 		DBObject obj = DAO.find("_id", "3");
 		
-		DAO.delete(obj);
+		System.out.println(obj.get("name"));
 	}
-
 }

@@ -3,17 +3,17 @@ package br.com.darlan.javamongo.domain;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 public class Cliente implements Serializable{
-
+	private static final long serialVersionUID = 1L;
+	
 	private String id;
 	private String nome;
 	private Integer idade;
 	
 	private Endereco endereco;
 
-	private List<Telefone> telefones = new ArrayList();
+	private List<Telefone> telefones = new ArrayList<Telefone>();
 
 	public Cliente() {
 
