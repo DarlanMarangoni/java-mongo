@@ -27,7 +27,7 @@ public class TesteCliente {
 		lista.add(telefone1);
 		lista.add(telefone2);
 		
-		Cliente cliente = new Cliente("4", "Vanessa", 30, endereco, lista);
+		Cliente cliente = new Cliente("5", "Vanessa", 30, endereco, lista);
 		
 		DBObject data = DBUtil.toDBObj(cliente);
 		
