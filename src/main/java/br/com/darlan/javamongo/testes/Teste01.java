@@ -27,8 +27,7 @@ public class Teste01 {
 															.append("cidade", "mairinque"))
 								.append("livros", livros);
 			colecao.insert(cliente);
-			
-			
+			client.close();
 			
 		} catch (UnknownHostException e) {
 			e.printStackTrace();

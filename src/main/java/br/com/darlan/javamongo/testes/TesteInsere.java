@@ -25,6 +25,8 @@ public class TesteInsere {
 		 
 		DAO.insere(cliente);
 		
+		DAO.close();
+		
 		System.out.println(cliente);
 	}
 }

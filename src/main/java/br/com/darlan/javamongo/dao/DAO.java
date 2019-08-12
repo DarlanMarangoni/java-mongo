@@ -15,10 +15,11 @@ import br.com.darlan.javamongo.util.DBUtil;
 public class DAO {
 
 	private static DBCollection colecao;
+	private static MongoClient client;
 	
 	public static void conectar(String dataBase, String collection) {
 		try { 
-			MongoClient client = new MongoClient();
+			client = new MongoClient();
 			DB dB = client.getDB(dataBase);
 			colecao = dB.getCollection(collection);
 		} catch (UnknownHostException e) {
@@ -44,5 +45,9 @@ public class DAO {
 	public static void atualiza(DBObject obj, Cliente novoCliente) {
 		DBObject novoObj = DBUtil.toDBObj(novoCliente);
 		colecao.update(obj, novoObj);
+	}
+	
+	public static void close() {
+		client.close();
 	}
 }

@@ -29,5 +29,7 @@ public class TesteAtualizar {
 		
 		DAO.atualiza(obj, novoCliente);
 		
+		DAO.close();
+		
 	}
 }

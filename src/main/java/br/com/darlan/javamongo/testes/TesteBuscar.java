@@ -12,6 +12,8 @@ public class TesteBuscar {
 		
 		DBObject obj = DAO.find("_id", "3");
 		
+		DAO.close();
+		
 		System.out.println(obj.get("name"));
 	}
 }

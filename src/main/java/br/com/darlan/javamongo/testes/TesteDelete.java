@@ -13,6 +13,8 @@ public class TesteDelete {
 		DBObject obj = DAO.find("_id", "3");
 		
 		DAO.delete(obj);
+		
+		DAO.close();
 	}
 
 }
