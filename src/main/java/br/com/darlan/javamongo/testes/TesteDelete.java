@@ -9,24 +9,19 @@ import com.mongodb.DBCursor;
 import com.mongodb.DBObject;
 import com.mongodb.MongoClient;
 
+import br.com.darlan.javamongo.util.DBUtil;
+
 public class TesteDelete {
 	
 	public static void main(String[] args) {
 		
-		try {
-			MongoClient client = new MongoClient();
-			DB database = client.getDB("DBCliente");
-			DBCollection colecao = database.getCollection("clientes01");
-			
-			DBObject query = new BasicDBObject("_id", "5");
-			DBCursor cursor = colecao.find(query);			
-			DBObject obj = cursor.one();
-			
-			colecao.remove(obj);
-			
-		} catch (UnknownHostException e) {
-			e.printStackTrace();
-		}
+		DBCollection colecao = DBUtil.conectar("DBCliente", "clientes01");
+		
+		DBObject query = new BasicDBObject("_id", "4");
+		DBCursor cursor = colecao.find(query);			
+		DBObject obj = cursor.one();
+		
+		colecao.remove(obj);
 	}
 
 }
